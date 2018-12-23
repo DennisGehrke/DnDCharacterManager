@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="spelldescs.txt" />
+    <None Remove="spelllist.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="spelldescs.txt" />
+    <EmbeddedResource Include="spelllist.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ExpandableView" Version="1.0.3" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+  </ItemGroup>
+</Project>
