@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace DnDCharacterManager
 {
-    class ListViewDetail : List<>
+    class ListViewDetail
     {
         private bool _expanded;
         public bool Expanded
