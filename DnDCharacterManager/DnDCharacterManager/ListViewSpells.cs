@@ -12,6 +12,12 @@ namespace DnDCharacterManager
         public ListViewSpells(List<Spell> lSpellList)
         {
             var listView = new ListView();
+            List<string> lSpellNames = new List<string>();
+            foreach(Spell spell in lSpellList)
+            {
+                lSpellNames.Add(spell.sName);
+            }
+            listView.ItemsSource = lSpellNames;
             
         //    var mainStack = new StackLayout();
         //    var mainScroll = new ScrollView();
@@ -209,25 +215,25 @@ namespace DnDCharacterManager
             Content = listView;
         }
 
-        private void ExecuteRefreshItemsCommand(HotelViewModel item)
-        {
-            if (_oldHotel == item)
-            {
-                // click twice on the same item will hide it
-                item.Expanded = !item.Expanded;
-            }
-            else
-            {
-                if (_oldHotel != null)
-                {
-                    // hide previous selected item
-                    _oldHotel.Expanded = false;
-                }
-                // show selected item
-                item.Expanded = true;
-            }
+        //private void ExecuteRefreshItemsCommand(HotelViewModel item)
+        //{
+        //    if (_oldHotel == item)
+        //    {
+        //        // click twice on the same item will hide it
+        //        item.Expanded = !item.Expanded;
+        //    }
+        //    else
+        //    {
+        //        if (_oldHotel != null)
+        //        {
+        //            // hide previous selected item
+        //            _oldHotel.Expanded = false;
+        //        }
+        //        // show selected item
+        //        item.Expanded = true;
+        //    }
 
-            _oldHotel = item;
-        }
+        //    _oldHotel = item;
+        //}
     }
 }
