@@ -8,7 +8,7 @@ namespace DnDCharacterManager
 {
     public class Spell : IComparable<Spell>
     {
-        public readonly string sName;
+        public string SName { get; private set; }
         public readonly int iLevel;
         public readonly List<string> lClasses;
         public readonly string sCastingTime;
@@ -21,7 +21,7 @@ namespace DnDCharacterManager
 
         public Spell(string sName, int iLevel, List<string> lClasses, string sCastingTime, string sRange, string sSpellType, List<string> lComponents, string sDuration, string sDesc, string sShortDesc)
         {
-            this.sName = sName;
+            SName = sName;
             this.iLevel = iLevel;
             this.lClasses = lClasses;
             this.sCastingTime = sCastingTime;
@@ -40,7 +40,7 @@ namespace DnDCharacterManager
                 return 1;
 
             else
-                return sName.CompareTo( compareSpell.sName);
+                return SName.CompareTo( compareSpell.SName);
         }
     }
 }
