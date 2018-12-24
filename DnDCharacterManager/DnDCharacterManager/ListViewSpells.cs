@@ -14,16 +14,22 @@ namespace DnDCharacterManager
         {
             ObservableCollection<Spell> spellList = new ObservableCollection<Spell>(lSpellList);
 
+
             ListView listView = new ListView
             {
                 ItemsSource = spellList,
-                ItemTemplate = new DataTemplate(typeof(SpellListDetails))
+                ItemTemplate = new DataTemplate(typeof(SpellListDetails)),
+                HasUnevenRows = true,
+                
             };
 
             // Using ItemTapped
-            listView.ItemTapped += async (sender, e) => {
-                await DisplayAlert("Tapped", e.Item + " row was tapped", "OK");
-                Debug.WriteLine("Tapped: " + e.Item);
+            listView.ItemTapped += (sender, e) => {
+                //await DisplayAlert("Tapped", e.Item + " row was tapped", "OK");
+                var spell = e.Item as Spell;
+                Debug.WriteLine("Tapped: " + spell.IsVisible);
+                spell.IsVisible = !spell.IsVisible;
+
                 ((ListView)sender).SelectedItem = null; // de-select the row
             };
 

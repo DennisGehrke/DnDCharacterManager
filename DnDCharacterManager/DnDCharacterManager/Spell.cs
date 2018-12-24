@@ -3,21 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace DnDCharacterManager
 {
-    public class Spell : IComparable<Spell>
+    public class Spell : IComparable<Spell>, INotifyPropertyChanged
     {
         public string SName { get; private set; }
         public readonly int iLevel;
         public readonly List<string> lClasses;
         public readonly string sCastingTime;
-        public readonly string sRange;
+        public string SRange { get; private set; }
         public readonly string sSpellType;
         public readonly List<string> lComponents;
-        public readonly string sDuration;
+        public string SDuration { get; private set; }
         public readonly string sDesc;
         public readonly string sShortDesc;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get
+            {
+                return isVisible;
+            }
+            set
+            {
+                if (isVisible != value)
+                    isVisible = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsVisible"));
+            }
+        }
 
         public Spell(string sName, int iLevel, List<string> lClasses, string sCastingTime, string sRange, string sSpellType, List<string> lComponents, string sDuration, string sDesc, string sShortDesc)
         {
@@ -25,10 +43,10 @@ namespace DnDCharacterManager
             this.iLevel = iLevel;
             this.lClasses = lClasses;
             this.sCastingTime = sCastingTime;
-            this.sRange = sRange;
+            SRange = sRange;
             this.sSpellType = sSpellType;
             this.lComponents = lComponents;
-            this.sDuration = sDuration;
+            SDuration = sDuration;
             this.sDesc = sDesc;
             this.sShortDesc = sShortDesc;
         }
