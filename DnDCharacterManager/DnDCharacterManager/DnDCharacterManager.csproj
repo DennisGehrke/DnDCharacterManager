@@ -10,13 +10,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="spelldescs.txt" />
-    <None Remove="spelllist.txt" />
+    <None Remove="Resources\spelldescs.txt" />
+    <None Remove="Resources\spelllist.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="spelldescs.txt" />
-    <EmbeddedResource Include="spelllist.txt" />
+    <EmbeddedResource Include="Resources\spelldescs.txt" />
+    <EmbeddedResource Include="Resources\spelllist.txt" />
   </ItemGroup>
 
   <ItemGroup>

@@ -14,8 +14,8 @@ namespace DnDCharacterManager
             int iSpellLevel = 0;
 
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(ListViewSpells)).Assembly;
-            Stream spellListStream = assembly.GetManifestResourceStream("DnDCharacterManager.spelllist.txt");
-            Stream spellDescStream = assembly.GetManifestResourceStream("DnDCharacterManager.spelldescs.txt");
+            Stream spellListStream = assembly.GetManifestResourceStream("DnDCharacterManager.Resources.spelllist.txt");
+            Stream spellDescStream = assembly.GetManifestResourceStream("DnDCharacterManager.Resources.spelldescs.txt");
 
             List<string> fileSpellList = new List<string>();
             using (var reader = new StreamReader(spellListStream))
@@ -102,7 +102,10 @@ namespace DnDCharacterManager
                     string sDescLine = "";
                     while (!sDescLine.StartsWith("#") && iStartValue + 6 < fileSpellDescs.Count)
                     {
-                        sDesc += " " + sDescLine;
+                        if (sDesc == "")
+                            sDesc = sDescLine;
+                        else
+                            sDesc += " " + sDescLine;
                         sDescLine = fileSpellDescs[iStartValue + 6];
                         iStartValue++;
                     }

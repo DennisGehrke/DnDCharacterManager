@@ -10,15 +10,45 @@ namespace DnDCharacterManager
     public class Spell : IComparable<Spell>, INotifyPropertyChanged
     {
         public string SName { get; private set; }
-        public readonly int iLevel;
+        public int ILevel { get; private set; }
         public readonly List<string> lClasses;
-        public readonly string sCastingTime;
+        public string SAllClasses
+        {
+            get
+            {
+                string sTemp = "";
+                foreach(string sClass in lClasses)
+                {
+                    if (sTemp == "")
+                        sTemp = sClass;
+                    else
+                        sTemp += ", " + sClass;
+                }
+                return sTemp;
+            }
+        }
+        public string SCastingTime { get; private set; }
         public string SRange { get; private set; }
-        public readonly string sSpellType;
+        public string SSpellType { get; private set; }
         public readonly List<string> lComponents;
+        public string SAllComponents
+        {
+            get
+            {
+                string sTemp = "";
+                foreach (string component in lComponents)
+                {
+                    if (sTemp == "")
+                        sTemp = component;
+                    else
+                        sTemp += ", " + component;
+                }
+                return sTemp;
+            }
+        }
         public string SDuration { get; private set; }
-        public readonly string sDesc;
-        public readonly string sShortDesc;
+        public string SDesc { get; private set; }
+        public string SShortDesc { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -40,15 +70,15 @@ namespace DnDCharacterManager
         public Spell(string sName, int iLevel, List<string> lClasses, string sCastingTime, string sRange, string sSpellType, List<string> lComponents, string sDuration, string sDesc, string sShortDesc)
         {
             SName = sName;
-            this.iLevel = iLevel;
+            this.ILevel = iLevel;
             this.lClasses = lClasses;
-            this.sCastingTime = sCastingTime;
+            this.SCastingTime = sCastingTime;
             SRange = sRange;
-            this.sSpellType = sSpellType;
+            this.SSpellType = sSpellType;
             this.lComponents = lComponents;
             SDuration = sDuration;
-            this.sDesc = sDesc;
-            this.sShortDesc = sShortDesc;
+            this.SDesc = sDesc;
+            this.SShortDesc = sShortDesc;
         }
 
         public int CompareTo(Spell compareSpell)

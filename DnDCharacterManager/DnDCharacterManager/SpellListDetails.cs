@@ -25,23 +25,66 @@ namespace DnDCharacterManager
                 Margin = 10,
                 HorizontalTextAlignment = TextAlignment.Center
             };
-            Label lblDuration = new Label();
+            Label lblClasses = new Label();
+            Label lblPreClasses = new Label() { Text = "Classes: " };
+            Label lblSpellType = new Label();
+            Label lblCastingTime = new Label();
+            Label lblPreCastingTime = new Label() { Text = "Casting Time: " };
             Label lblRange = new Label();
+            Label lblPreRange = new Label() { Text = "Range: " };
+            Label lblComponents = new Label();
+            Label lblPreComponents = new Label() { Text = "Components: " };
+            Label lblDuration = new Label();
+            Label lblPreDuration = new Label() { Text = "Duration: " };
+            Label lblShortDesc = new Label();
+            Label lblDesc = new Label();
 
-            StackLayout wrapper = new StackLayout();
-            StackLayout details = new StackLayout();
+            StackLayout slWrapper = new StackLayout();
+            StackLayout slDetails = new StackLayout();
+            StackLayout slClasses = new StackLayout() { Orientation = StackOrientation.Horizontal };
+            StackLayout slCastingTime = new StackLayout() { Orientation = StackOrientation.Horizontal };
+            StackLayout slRange = new StackLayout() { Orientation = StackOrientation.Horizontal };
+            StackLayout slComponents = new StackLayout() { Orientation = StackOrientation.Horizontal };
+            StackLayout slDuration = new StackLayout() { Orientation = StackOrientation.Horizontal };
 
             lblName.SetBinding(Label.TextProperty, new Binding("SName"));
-            lblDuration.SetBinding(Label.TextProperty, new Binding("SDuration"));
+            lblClasses.SetBinding(Label.TextProperty, new Binding("SAllClasses"));
+            lblSpellType.SetBinding(Label.TextProperty, new Binding("SSpellType"));
+            lblCastingTime.SetBinding(Label.TextProperty, new Binding("SCastingTime"));
             lblRange.SetBinding(Label.TextProperty, new Binding("SRange"));
-            details.SetBinding(StackLayout.IsVisibleProperty, new Binding("IsVisible"));
+            lblComponents.SetBinding(Label.TextProperty, new Binding("SAllComponents"));
+            lblDuration.SetBinding(Label.TextProperty, new Binding("SDuration"));
+            lblShortDesc.SetBinding(Label.TextProperty, new Binding("SShortDesc"));
+            lblDesc.SetBinding(Label.TextProperty, new Binding("SDesc"));
 
-            details.Children.Add(lblRange);
-            details.Children.Add(lblDuration);
-            wrapper.Children.Add(lblName);
-            wrapper.Children.Add(details);
+            slDetails.SetBinding(StackLayout.IsVisibleProperty, new Binding("IsVisible"));
 
-            View = wrapper;
+            slClasses.Children.Add(lblPreClasses);
+            slClasses.Children.Add(lblClasses);
+
+            slCastingTime.Children.Add(lblPreCastingTime);
+            slCastingTime.Children.Add(lblCastingTime);
+
+            slRange.Children.Add(lblPreRange);
+            slRange.Children.Add(lblRange);
+
+            slComponents.Children.Add(lblPreComponents);
+            slComponents.Children.Add(lblComponents);
+
+            slDuration.Children.Add(lblPreDuration);
+            slDuration.Children.Add(lblDuration);
+
+            slDetails.Children.Add(slClasses);
+            slDetails.Children.Add(slCastingTime);
+            slDetails.Children.Add(slRange);
+            slDetails.Children.Add(slComponents);
+            slDetails.Children.Add(slDuration);
+            slDetails.Children.Add(lblDesc);
+
+            slWrapper.Children.Add(lblName);
+            slWrapper.Children.Add(slDetails);
+
+            View = slWrapper;
         }
     }
 }

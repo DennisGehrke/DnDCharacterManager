@@ -25,9 +25,7 @@ namespace DnDCharacterManager
 
             // Using ItemTapped
             listView.ItemTapped += (sender, e) => {
-                //await DisplayAlert("Tapped", e.Item + " row was tapped", "OK");
                 var spell = e.Item as Spell;
-                Debug.WriteLine("Tapped: " + spell.IsVisible);
                 spell.IsVisible = !spell.IsVisible;
 
                 ((ListView)sender).SelectedItem = null; // de-select the row
