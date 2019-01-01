@@ -100,6 +100,7 @@ namespace DnDCharacterManager
 
 
                     string sDescLine = "";
+                    sDesc = "";
                     while (!sDescLine.StartsWith("#") && iStartValue + 6 < fileSpellDescs.Count)
                     {
                         if (sDesc == "")
