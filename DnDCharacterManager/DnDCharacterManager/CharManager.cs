@@ -31,6 +31,27 @@ namespace DnDCharacterManager
                     fileSpellDescs.Add(reader.ReadLine());
             }
 
+            foreach (string line in fileSpellDescs)
+            {
+                if (line.StartsWith("#"))
+                {
+                    bool isCaps = true;
+                    foreach (char c in line.Substring(1))
+                    {
+                        if (Char.IsLower(c))
+                        {
+                            isCaps = false;
+                            break;
+                        }
+                    }
+                    if (isCaps)
+                    {
+                        System.Globalization.TextInfo txtInf = new System.Globalization.CultureInfo("en-US", false).TextInfo;
+                        fileSpellDescs[fileSpellDescs.IndexOf(line)] = txtInf.ToTitleCase(line);
+                    }
+                }
+            }
+
             lSpellList = new List<Spell>();
             List<string> lClasses = new List<string>();
             string sName;
@@ -46,7 +67,8 @@ namespace DnDCharacterManager
             {
                 if (spell.StartsWith("-"))
                 {
-                    iSpellLevel++;
+                    if (!spell.EndsWith("0"))
+                        iSpellLevel++;
                     continue;
                 }
                 else
@@ -68,7 +90,7 @@ namespace DnDCharacterManager
                         }
                     }
 
-                    int iStartValue = fileSpellDescs.IndexOf("#" + spell.Substring(0, spell.IndexOf(" ")));
+                    int iStartValue = fileSpellDescs.IndexOf("#" + sName);
                     if (iStartValue < 0)
                     {
                         lSpellList.Add(new Spell(sName, iSpellLevel, lClasses, "", "", "", new List<string>(), "", "", ""));
@@ -96,7 +118,8 @@ namespace DnDCharacterManager
                             break;
                         }
                     }
-
+                    if (sName.Contains("Acid"))
+                        sName = sName;
 
 
                     string sDescLine = "";

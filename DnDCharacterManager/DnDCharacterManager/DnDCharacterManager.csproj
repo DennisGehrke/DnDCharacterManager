@@ -21,6 +21,6 @@
 
   <ItemGroup>
     <PackageReference Include="ExpandableView" Version="1.0.3" />
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
+    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1009999" />
   </ItemGroup>
 </Project>
