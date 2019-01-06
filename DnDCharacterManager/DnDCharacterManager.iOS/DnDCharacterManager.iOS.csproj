@@ -147,14 +147,16 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\DnDCharacterManager\DnDCharacterManager.csproj">
       <Project>{406C2293-4D57-43D9-87ED-4632237D0606}</Project>
       <Name>DnDCharacterManager</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.4.0.1009999</Version>
+    </PackageReference>
   </ItemGroup>
 </Project>
