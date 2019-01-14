@@ -31,23 +31,24 @@ namespace DnDCharacterManager
                     fileSpellDescs.Add(reader.ReadLine());
             }
 
-            foreach (string line in fileSpellDescs)
+            for (int i = 0; i < fileSpellDescs.Count; i++)
             {
+                string line = fileSpellDescs[i];
+
                 if (line.StartsWith("#"))
                 {
                     bool isCaps = true;
-                    foreach (char c in line.Substring(1))
+                    char c = line.Substring(2).ToCharArray()[0];
+                    
+                    if (Char.IsLower(c))
                     {
-                        if (Char.IsLower(c))
-                        {
-                            isCaps = false;
-                            break;
-                        }
+                        isCaps = false;
                     }
+
                     if (isCaps)
                     {
                         System.Globalization.TextInfo txtInf = new System.Globalization.CultureInfo("en-US", false).TextInfo;
-                        fileSpellDescs[fileSpellDescs.IndexOf(line)] = txtInf.ToTitleCase(line);
+                        fileSpellDescs[i] = txtInf.ToTitleCase(line);
                     }
                 }
             }
@@ -93,8 +94,13 @@ namespace DnDCharacterManager
                     int iStartValue = fileSpellDescs.IndexOf("#" + sName);
                     if (iStartValue < 0)
                     {
-                        lSpellList.Add(new Spell(sName, iSpellLevel, lClasses, "", "", "", new List<string>(), "", "", ""));
-                        continue;
+                        sName = sName.ToUpper();
+                        iStartValue = fileSpellDescs.IndexOf("#" + sName);
+                        if (iStartValue < 0)
+                        {
+                            lSpellList.Add(new Spell(sName, iSpellLevel, lClasses, "", "", "", new List<string>(), "", "", ""));
+                            continue;
+                        }
                     }
 
                     sCastingTime = fileSpellDescs[iStartValue + 2].Substring(fileSpellDescs[iStartValue + 2].IndexOf(":") + 2);
@@ -107,7 +113,7 @@ namespace DnDCharacterManager
                     string sComponents = fileSpellDescs[iStartValue + 4].Substring(fileSpellDescs[iStartValue + 4].IndexOf(" ") + 1);
                     while (sComponents != "")
                     {
-                        if (sComponents.IndexOf(",") > 0)
+                        if (sComponents.IndexOf(",") > 0 && sComponents.IndexOf("M") != 0)
                         {
                             lComponents.Add(sComponents.Substring(0, sComponents.IndexOf(",")));
                             sComponents = sComponents.Substring(sComponents.IndexOf(",") + 2);
@@ -118,9 +124,6 @@ namespace DnDCharacterManager
                             break;
                         }
                     }
-                    if (sName.Contains("Acid"))
-                        sName = sName;
-
 
                     string sDescLine = "";
                     sDesc = "";
