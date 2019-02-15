@@ -23,6 +23,7 @@ namespace DnDCharacterManager
             {
                 FontSize = 25,
                 Margin = 10,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
                 HorizontalTextAlignment = TextAlignment.Center
             };
             Label lblClasses = new Label();
@@ -38,8 +39,19 @@ namespace DnDCharacterManager
             Label lblPreDuration = new Label() { Text = "Duration: " };
             Label lblShortDesc = new Label();
             Label lblDesc = new Label();
+            Button btnFav = new Button()
+            {
+                HorizontalOptions = LayoutOptions.End
+            };
+            btnFav.Image = "favorite_star_unselected.png";
+            Image imgFav = new Image() { Source = "favorite_star_unselected.png" };
 
-            StackLayout slWrapper = new StackLayout();
+            StackLayout slWrapper = new StackLayout() { BackgroundColor = Color.DarkOliveGreen};
+            StackLayout slTitle = new StackLayout()
+            {
+                Orientation = StackOrientation.Horizontal,
+                BackgroundColor = Color.Aqua
+            };
             StackLayout slDetails = new StackLayout();
             StackLayout slClasses = new StackLayout() { Orientation = StackOrientation.Horizontal };
             StackLayout slCastingTime = new StackLayout() { Orientation = StackOrientation.Horizontal };
@@ -81,7 +93,10 @@ namespace DnDCharacterManager
             slDetails.Children.Add(slDuration);
             slDetails.Children.Add(lblDesc);
 
-            slWrapper.Children.Add(lblName);
+            slTitle.Children.Add(lblName);
+            slTitle.Children.Add(imgFav);
+
+            slWrapper.Children.Add(slTitle);
             slWrapper.Children.Add(slDetails);
 
             View = slWrapper;

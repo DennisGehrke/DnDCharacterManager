@@ -10,11 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\favorite-star-selected.png" />
+    <None Remove="Resources\favorite-star-unselected.png" />
     <None Remove="Resources\spelldescs.txt" />
     <None Remove="Resources\spelllist.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\favorite-star-selected.png" />
+    <EmbeddedResource Include="Resources\favorite-star-unselected.png" />
     <EmbeddedResource Include="Resources\spelldescs.txt" />
     <EmbeddedResource Include="Resources\spelllist.txt" />
   </ItemGroup>
@@ -22,5 +26,20 @@
   <ItemGroup>
     <PackageReference Include="ExpandableView" Version="1.0.3" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1009999" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
