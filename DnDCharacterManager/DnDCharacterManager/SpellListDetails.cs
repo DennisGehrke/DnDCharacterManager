@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace DnDCharacterManager
 {
@@ -36,21 +37,41 @@ namespace DnDCharacterManager
             Label lblComponents = new Label();
             Label lblPreComponents = new Label() { Text = "Components: " };
             Label lblDuration = new Label();
-            Label lblPreDuration = new Label() { Text = "Duration: " };
+            Label lblPreDuration = new Label { Text = "Duration: " };
             Label lblShortDesc = new Label();
             Label lblDesc = new Label();
-            Button btnFav = new Button()
+            Button btnFav = new Button
             {
                 HorizontalOptions = LayoutOptions.End
             };
             btnFav.Image = "favorite_star_unselected.png";
-            Image imgFav = new Image() { Source = "favorite_star_unselected.png" };
+            Image imgFav = new Image
+            {
+                Source = ImageSource.FromResource("DnDCharacterManager.Resources.favorite_star_unselected.png", typeof(SpellListDetails).GetTypeInfo().Assembly),
+                Aspect = Aspect.AspectFit,
+                HorizontalOptions = LayoutOptions.End,
+                WidthRequest = 30
+            };
 
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                if (imgFav.Source == ImageSource.FromResource("DnDCharacterManager.Resources.favorite_star_unselected.png", typeof(SpellListDetails).GetTypeInfo().Assembly))
+                {
+                    imgFav.Source = ImageSource.FromResource("DnDCharacterManager.Resources.favorite_star_selected.png", typeof(SpellListDetails).GetTypeInfo().Assembly);
+                }
+                else
+                {
+                    imgFav.Source = ImageSource.FromResource("DnDCharacterManager.Resources.favorite_star_unselected.png", typeof(SpellListDetails).GetTypeInfo().Assembly);
+                }
+            };
+            imgFav.GestureRecognizers.Add(tapGestureRecognizer);
+            
             StackLayout slWrapper = new StackLayout() { BackgroundColor = Color.DarkOliveGreen};
             StackLayout slTitle = new StackLayout()
             {
                 Orientation = StackOrientation.Horizontal,
-                BackgroundColor = Color.Aqua
+                BackgroundColor = Color.Aqua,
+                VerticalOptions = LayoutOptions.Center
             };
             StackLayout slDetails = new StackLayout();
             StackLayout slClasses = new StackLayout() { Orientation = StackOrientation.Horizontal };

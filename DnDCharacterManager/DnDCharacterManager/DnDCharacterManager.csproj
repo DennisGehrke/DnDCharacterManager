@@ -10,15 +10,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\favorite-star-selected.png" />
-    <None Remove="Resources\favorite-star-unselected.png" />
+    <None Remove="Resources\favorite_star_selected.png" />
+    <None Remove="Resources\favorite_star_unselected.png" />
     <None Remove="Resources\spelldescs.txt" />
     <None Remove="Resources\spelllist.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\favorite-star-selected.png" />
-    <EmbeddedResource Include="Resources\favorite-star-unselected.png" />
+    <EmbeddedResource Include="Resources\favorite_star_selected.png" />
+    <EmbeddedResource Include="Resources\favorite_star_unselected.png" />
     <EmbeddedResource Include="Resources\spelldescs.txt" />
     <EmbeddedResource Include="Resources\spelllist.txt" />
   </ItemGroup>
